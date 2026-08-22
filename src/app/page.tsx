@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
-import { HeroSlider } from '@/components/HeroSlider';
+import { HeroMasterpiece } from '@/components/HeroMasterpiece';
 import { CategoryArches } from '@/components/CategoryArches';
 import { BestsellersBand, ProductItem } from '@/components/BestsellersBand';
 import { CollectionSpotlight } from '@/components/CollectionSpotlight';
@@ -19,6 +19,7 @@ import { CartDrawer, CartItem } from '@/components/CartDrawer';
 import { ProductQuickView } from '@/components/ProductQuickView';
 import { ConsultationModal } from '@/components/ConsultationModal';
 import { FloatingActions } from '@/components/FloatingActions';
+import { ScrollRevealObserver } from '@/components/ScrollRevealObserver';
 
 import { GlobalIslamicClipDefs } from '@/components/motifs';
 
@@ -176,55 +177,78 @@ export default function HomePage() {
         onOpenConsultation={() => setIsConsultationOpen(true)}
       />
 
+      {/* Scroll-Triggered Reveal Engine */}
+      <ScrollRevealObserver />
+
       {/* Main Page Flow */}
       <main className="flex-1">
-        {/* 3. Hero Carousel (Embla) */}
-        <HeroSlider onOpenConsultation={() => setIsConsultationOpen(true)} />
+        {/* 3. Yazdi Girih Burgundy-Gold Termeh Mosaic & Floating Cartouche Hero */}
+        <HeroMasterpiece onOpenConsultation={() => setIsConsultationOpen(true)} />
 
         {/* 4. Mihrab Arch Category Cards */}
-        <CategoryArches onSelectCategory={handleCategorySelect} />
+        <div className="reveal-init">
+          <CategoryArches onSelectCategory={handleCategorySelect} />
+        </div>
 
         {/* 5. Bestsellers Band (Burgundy Girih Carousel) */}
-        <BestsellersBand
-          products={allProducts}
-          onAddToCart={handleAddToCart}
-          onQuickView={(p) => setQuickViewProduct(p)}
-        />
+        <div className="reveal-init">
+          <BestsellersBand
+            products={allProducts}
+            onAddToCart={handleAddToCart}
+            onQuickView={(p) => setQuickViewProduct(p)}
+          />
+        </div>
 
         {/* 6. Collection / Motif Spotlight Blocks */}
-        <CollectionSpotlight onExploreCollection={handleCategorySelect} />
+        <div className="reveal-init">
+          <CollectionSpotlight onExploreCollection={handleCategorySelect} />
+        </div>
 
         {/* 7. Curated Artisan Picks (Editorial Layout) */}
-        <CuratedPicks
-          products={allProducts}
-          onAddToCart={handleAddToCart}
-          onQuickView={(p) => setQuickViewProduct(p)}
-          onOpenConsultation={() => setIsConsultationOpen(true)}
-        />
+        <div className="reveal-init">
+          <CuratedPicks
+            products={allProducts}
+            onAddToCart={handleAddToCart}
+            onQuickView={(p) => setQuickViewProduct(p)}
+            onOpenConsultation={() => setIsConsultationOpen(true)}
+          />
+        </div>
 
         {/* 8. Flagship Shahneshin Feature */}
-        <ShahneshinFeature onOpenConsultation={() => setIsConsultationOpen(true)} />
+        <div className="reveal-init">
+          <ShahneshinFeature onOpenConsultation={() => setIsConsultationOpen(true)} />
+        </div>
 
         {/* 9. Corporate Gift Boxes Section */}
-        <CorporateGiftSection onOpenConsultation={() => setIsConsultationOpen(true)} />
+        <div className="reveal-init">
+          <CorporateGiftSection onOpenConsultation={() => setIsConsultationOpen(true)} />
+        </div>
 
         {/* 10. Complete Interactive Product Catalog */}
-        <ProductCatalog
-          products={allProducts}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
-          onAddToCart={handleAddToCart}
-          onQuickView={(p) => setQuickViewProduct(p)}
-        />
+        <div className="reveal-init">
+          <ProductCatalog
+            products={allProducts}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+            onAddToCart={handleAddToCart}
+            onQuickView={(p) => setQuickViewProduct(p)}
+          />
+        </div>
 
         {/* 11. Value Propositions (4 Soft-Tinted Motif Cards) */}
-        <ValueProps />
+        <div className="reveal-init">
+          <ValueProps />
+        </div>
 
         {/* 12. SEO & UNESCO Yazd Heritage Story */}
-        <SeoHeritageStory />
+        <div className="reveal-init">
+          <SeoHeritageStory />
+        </div>
 
         {/* 13. Termeh Magazine Strip */}
-        <TermehMagazine />
+        <div className="reveal-init">
+          <TermehMagazine />
+        </div>
       </main>
 
       {/* 14. Luxury Persian Footer */}

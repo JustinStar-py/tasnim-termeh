@@ -2,9 +2,30 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 
-const vazirmatn = localFont({
-  src: './fonts/Vazirmatn-Variable.woff2',
-  variable: '--font-vazirmatn',
+const shabnam = localFont({
+  src: [
+    {
+      path: './fonts/Shabnam-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Shabnam.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Shabnam-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Shabnam-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-shabnam',
   display: 'swap',
 });
 
@@ -27,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatn.variable}>
+    <html lang="fa" dir="rtl" className={shabnam.variable}>
       <body className="min-h-screen bg-[var(--color-sand)] text-[var(--color-ink)] font-sans antialiased">
         {children}
       </body>

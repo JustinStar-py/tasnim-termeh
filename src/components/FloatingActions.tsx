@@ -34,7 +34,7 @@ export function FloatingActions({ onOpenConsultation }: FloatingActionsProps) {
   };
 
   return (
-    <div className="fixed bottom-5 left-5 z-40 flex flex-col items-start gap-3">
+    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-start gap-3">
       {/* 1. Discount Coupon Floating Pill */}
       <button
         onClick={copyCoupon}

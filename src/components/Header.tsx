@@ -51,12 +51,14 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-line shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-20 flex items-center justify-between gap-4">
-          {/* 1. Right side: Brand Logo + Boteh Mark */}
+          {/* 1. Right side: Brand Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <a href="#" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brand to-brand-hover flex items-center justify-center text-gold shadow-md border border-gold/40 group-hover:scale-105 transition-transform">
-                <BotehMark className="w-7 h-7 text-gold drop-shadow-xs" />
-              </div>
+              <img
+                src="/images/logo.png"
+                alt="تسنیم ترمه"
+                className="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
+              />
               <div className="text-right">
                 <span className="text-xl sm:text-2xl font-black text-brand tracking-tight block">
                   تسنیم تِرمه

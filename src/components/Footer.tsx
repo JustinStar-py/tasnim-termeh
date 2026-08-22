@@ -26,10 +26,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Col 1: Brand & Bio (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-brand text-gold flex items-center justify-center border border-gold/40 shadow-sm">
-                <BotehMark className="w-6 h-6 text-gold" />
-              </div>
+            <div className="flex items-center gap-3.5">
+              <img
+                src="/images/logo.png"
+                alt="تسنیم ترمه یزد"
+                className="h-12 sm:h-14 w-auto object-contain drop-shadow-sm brightness-110"
+              />
               <div>
                 <span className="text-lg font-black text-white block">تسنیم تِرمه یزد</span>
                 <span className="text-[11px] text-[#8a7f77] block">هنر و اصالت کهن ایرانی</span>
