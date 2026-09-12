@@ -48,8 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fa" dir="rtl" className={shabnam.variable}>
-      <body className="min-h-screen bg-[var(--color-sand)] text-[var(--color-ink)] font-sans antialiased">
+    <html lang="fa" dir="rtl" className={shabnam.variable} suppressHydrationWarning>
+      <body
+        className="min-h-screen bg-[var(--color-sand)] text-[var(--color-ink)] font-sans antialiased"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
