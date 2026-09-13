@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { BotehMark, ShamsehEightStar, ShamsehTwelveStar } from './motifs';
 import {
   BotehMark,
   ShamsehEightStar,
@@ -47,14 +46,6 @@ const normalizeSearch = (value: string) =>
     .replace(/[يى]/g, 'ی')
     .replace(/ك/g, 'ک')
     .replace(/\s+/g, ' ');
-
-function KhatoonStar({ className = '' }: { className?: string }) {
-  return (
-    <span className={`khatoon-star ${className}`} aria-hidden="true">
-      <ShamsehTwelveStar className="h-full w-full text-gold" />
-    </span>
-  );
-}
 
 function ProductCard({
   product,
@@ -164,7 +155,6 @@ export function StorefrontHome({
 
     return matchesCategory && (!normalizedSearch || searchableText.includes(normalizedSearch));
   });
-  const signatureProduct = products[0];
   const shahneshinProduct = products.find((product) => product.category === 'shahneshin') ?? products[1];
 
   return (
@@ -259,7 +249,6 @@ export function StorefrontHome({
             <div className="text-right">
               <div className="mb-2 inline-flex items-center gap-2 text-[11px] font-bold text-brand">
                 <span className="h-px w-8 bg-gold" />
-                <span>ویترین اصلی ترمه</span>
                 <ShamsehEightStar className="h-4 w-4 text-gold shrink-0" />
                 <span>ویترین و کاتالوگ آثار ترمه</span>
                 <span className="h-px w-6 bg-gradient-to-l from-transparent to-gold" />
@@ -332,8 +321,6 @@ export function StorefrontHome({
           </div>
 
           {visibleProducts.length === 0 && (
-            <div className="rounded-2xl border border-dashed border-gold/50 bg-gold-soft p-12 text-center text-sm font-bold text-brand">
-              محصولی در این دسته‌بندی پیدا نشد.
             <div className="rounded-3xl border border-dashed border-gold/40 bg-gold-soft/50 p-12 text-center text-sm font-bold text-brand space-y-2">
               <ShamsehTwelveStar className="h-8 w-8 text-gold mx-auto opacity-70" />
               <div>محصولی در این دسته‌بندی پیدا نشد.</div>
@@ -345,8 +332,6 @@ export function StorefrontHome({
       <section id="atelier" className="relative overflow-hidden border-y border-line bg-sand-dark py-14 sm:py-20">
         <div className="pointer-events-none absolute -left-20 top-0 h-80 w-80 rounded-full bg-turquoise/10 blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div id="shahneshin" className="grid overflow-hidden rounded-[1.75rem] border border-gold/35 bg-[#211517] shadow-2xl lg:grid-cols-[0.95fr_1.05fr]">
-          
           {/* Subtle Persian Girih Divider before Shahneshin */}
           <div className="max-w-xs sm:max-w-md mx-auto mb-10 sm:mb-14 opacity-60">
             <GirihDivider />
@@ -411,7 +396,6 @@ export function StorefrontHome({
             </div>
           </div>
 
-          <div className="mt-10 grid gap-4 border-b border-line pb-1 sm:grid-cols-2 lg:grid-cols-4">
           <div className="mt-12 grid gap-4 border-t border-line/80 pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['اصالت بافت', 'انتخاب مستقیم از کارگاه‌های یزد'],
@@ -419,8 +403,6 @@ export function StorefrontHome({
               ['بسته‌بندی فاخر', 'آماده برای هدیه‌دادن'],
               ['ارسال ایمن', 'بسته‌بندی ویژه به سراسر کشور'],
             ].map(([title, description], index) => (
-              <div key={title} className="flex items-start gap-3 border-l border-line px-1 py-3 last:border-l-0 sm:px-4">
-                <span className="font-serif text-sm font-black text-gold">{toPersianDigits(index + 1)}</span>
               <div key={title} className="flex items-start gap-3 border-l border-line/60 px-2 py-3 last:border-l-0 sm:px-4 text-right">
                 <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gold-soft border border-gold/30 text-brand shadow-2xs">
                   <span className="font-serif text-xs font-black">{toPersianDigits(index + 1)}</span>

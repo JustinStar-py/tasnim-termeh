@@ -3,7 +3,7 @@
 import React, { useCallback } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
-import { PersianArchImageFrame, ShamsehEightStar, ShamsehTwelveStar, BotehMark } from './motifs';
+import { PersianArchImageFrame, ShamsehEightStar } from './motifs';
 
 export interface ProductItem {
   id: number;

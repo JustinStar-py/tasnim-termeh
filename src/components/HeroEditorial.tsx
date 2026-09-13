@@ -5,10 +5,7 @@ import Image from 'next/image';
 import {
   BotehMark,
   ShamsehEightStar,
-  ShamsehTwelveStar,
   PersianArchImageFrame,
-  OrsiWindowLattice,
-  GirihDivider,
 } from './motifs';
 
 interface EditorialStory {

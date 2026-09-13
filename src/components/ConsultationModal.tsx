@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BotehMark, ShamsehOrnament } from './motifs';
+import { BotehMark } from './motifs';
 
 interface ConsultationModalProps {
   isOpen: boolean;

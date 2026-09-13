@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { BotehMark, ShamsehEightStar } from './motifs';
 import {
   BotehMark,
   ShamsehEightStar,

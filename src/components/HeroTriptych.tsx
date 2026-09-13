@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import {
   BotehMark,
-  ShamsehEightStar,
-  ShamsehTwelveStar,
   PersianArchImageFrame,
-  OrsiWindowLattice,
 } from './motifs';
 
 interface HeroTriptychProps {

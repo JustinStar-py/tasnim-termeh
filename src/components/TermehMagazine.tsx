@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { BotehMark, ShamsehOrnament } from './motifs';
+import { BotehMark } from './motifs';
 
 interface ArticleItem {
   id: number;

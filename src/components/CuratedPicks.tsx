@@ -3,19 +3,17 @@
 import React from 'react';
 import Image from 'next/image';
 import { ProductItem } from './BestsellersBand';
-import { PersianArchImageFrame, ShamsehEightStar, ShamsehTwelveStar, BotehMark } from './motifs';
+import { PersianArchImageFrame, ShamsehEightStar } from './motifs';
 
 interface CuratedPicksProps {
   products: ProductItem[];
   onAddToCart: (product: ProductItem) => void;
-  onQuickView: (product: ProductItem) => void;
   onOpenConsultation: () => void;
 }
 
 export function CuratedPicks({
   products,
   onAddToCart,
-  onQuickView,
   onOpenConsultation,
 }: CuratedPicksProps) {
   const secondary = products.slice(1, 4);

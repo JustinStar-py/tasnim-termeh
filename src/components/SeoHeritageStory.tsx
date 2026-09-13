@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { BotehMark, GirihDivider, ShamsehOrnament } from './motifs';
+import { BotehMark, GirihDivider } from './motifs';
 
 export function SeoHeritageStory() {
   return (

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { KhatamBorder } from './motifs';
 
 export function Footer() {
@@ -27,9 +28,11 @@ export function Footer() {
           {/* Col 1: Brand & Bio (2 cols on lg) */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3.5">
-              <img
+              <Image
                 src="/images/logo.png"
                 alt="تسنیم ترمه یزد"
+                width={250}
+                height={250}
                 className="h-12 sm:h-14 w-auto object-contain drop-shadow-sm brightness-110"
               />
               <div>

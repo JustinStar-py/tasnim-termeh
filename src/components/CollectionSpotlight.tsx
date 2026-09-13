@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { PersianArchImageFrame, ShamsehEightStar, ShamsehTwelveStar, BotehMark } from './motifs';
+import { PersianArchImageFrame, ShamsehEightStar } from './motifs';
 
 interface CollectionItem {
   id: string;
