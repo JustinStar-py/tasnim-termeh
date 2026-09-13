@@ -65,8 +65,6 @@ export function CartDrawer({
         aria-label="بستن سبد خرید"
       />
 
-      <div className="fixed inset-y-0 right-0 flex max-w-full pl-10 pr-0">
-        <div className="flex w-screen max-w-md flex-col justify-between border-l border-line bg-paper shadow-2xl">
       <div className="fixed inset-y-0 right-0 flex max-w-full pl-0 sm:pl-10 pr-0">
         <div className="flex w-screen max-w-full sm:max-w-md flex-col justify-between border-l border-line bg-paper shadow-2xl">
           {/* Header */}

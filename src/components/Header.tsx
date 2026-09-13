@@ -83,11 +83,9 @@ export function Header({
                 className="h-11 w-auto object-contain drop-shadow-xs transition-transform group-hover:scale-105 sm:h-12"
               />
               <div className="text-right">
-                <span className="text-xl sm:text-2xl font-black text-brand tracking-tight block">
                 <span className="text-lg xs:text-xl sm:text-2xl font-black text-brand tracking-tight block leading-tight">
                   تسنیم تِرمه
                 </span>
-                <span className="text-[11px] text-ink-muted block -mt-1 font-medium">
                 <span className="text-[10px] xs:text-[11px] text-ink-muted block -mt-0.5 sm:-mt-1 font-medium">
                   اصالت بافت و زری‌دوزی یزد
                 </span>
@@ -226,7 +224,6 @@ export function Header({
 
         {/* Mobile Drawer */}
         {mobileMenuOpen && (
-          <div id="mobile-navigation" className="lg:hidden border-t border-line bg-paper px-4 py-5 space-y-4 shadow-xl">
           <div id="mobile-navigation" className="lg:hidden border-t border-line bg-paper px-4 py-5 space-y-4 shadow-xl animate-fadeIn">
             {/* Search Input for Mobile */}
             <div className="relative">
@@ -234,8 +231,6 @@ export function Header({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                placeholder="جستجو در محصولات…"
-                className="w-full px-4 py-2.5 text-xs rounded-xl border border-line bg-sand"
                 placeholder="جستجو در نام محصول، طرح، رنگ…"
                 className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-line bg-sand focus:bg-white focus:outline-hidden focus:border-gold"
               />
@@ -247,15 +242,12 @@ export function Header({
               </span>
             </div>
 
-            <div className="space-y-2 text-xs font-semibold text-ink">
             <div className="space-y-1 text-xs font-semibold text-ink divide-y divide-line/30">
               <a
                 href="#hero"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 text-brand font-bold border-b border-line/40"
                 className="flex items-center justify-between py-2.5 text-brand font-bold"
               >
-                صفحه اصلی
                 <span>صفحه اصلی</span>
                 <span className="text-gold text-[10px]">✦</span>
               </a>
@@ -264,10 +256,8 @@ export function Header({
                   key={item.id}
                   href={item.href}
                   onClick={() => handleCategoryClick(item.category)}
-                  className="block py-2 hover:text-brand border-b border-line/40"
                   className="flex items-center justify-between py-2.5 hover:text-brand transition-colors"
                 >
-                  {item.label}
                   <span>{item.label}</span>
                   <span className="text-ink-muted text-[10px]">←</span>
                 </a>
@@ -275,26 +265,21 @@ export function Header({
               <a
                 href="#atelier"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 hover:text-brand border-b border-line/40"
                 className="flex items-center justify-between py-2.5 hover:text-brand transition-colors"
               >
-                شاه‌نشین و سفارش اختصاصی
                 <span>سرویس شاه‌نشین و سفارش ابعاد دلخواه</span>
                 <span className="text-ink-muted text-[10px]">←</span>
               </a>
               <a
                 href="#atelier"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-2 hover:text-brand border-b border-line/40"
                 className="flex items-center justify-between py-2.5 hover:text-brand transition-colors"
               >
-                داستان تسنیم
                 <span>داستان اصالت تسنیم ترمه</span>
                 <span className="text-ink-muted text-[10px]">←</span>
               </a>
             </div>
 
-            <div className="pt-2 flex flex-col gap-2">
             <div className="pt-2 flex flex-col gap-2.5">
               <button
                 type="button"
@@ -302,7 +287,6 @@ export function Header({
                   setMobileMenuOpen(false);
                   onOpenConsultation();
                 }}
-                className="w-full py-3 rounded-xl bg-brand text-white text-xs font-bold shadow-sm"
                 className="w-full py-3 rounded-xl bg-brand hover:bg-brand-hover text-white text-xs font-bold shadow-sm transition-colors"
               >
                 درخواست مشاوره و سفارش اختصاصی

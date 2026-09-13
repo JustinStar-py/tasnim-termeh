@@ -105,15 +105,12 @@ export function CategoryArches({ onSelectCategory }: CategoryArchesProps) {
           </p>
         </div>
 
-        {/* 5 Standard Luxury Category Cards (Matching Product Card Form) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5 lg:gap-6">
         {/* Mobile Horizontal Snap Carousel / Desktop 5-Column Grid */}
         <div className="flex sm:grid overflow-x-auto sm:overflow-visible snap-x snap-mandatory sm:snap-none -mx-4 px-4 sm:mx-0 sm:px-0 gap-3.5 sm:gap-5 lg:gap-6 pb-3 sm:pb-0 no-scrollbar sm:grid-cols-3 lg:grid-cols-5">
           {categories.map((cat) => (
             <div
               key={cat.id}
               onClick={() => handleClick(cat.id)}
-              className="group cursor-pointer flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-line bg-paper p-2.5 sm:p-3 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gold/60 hover:-translate-y-1 text-right"
               className="w-[75vw] xs:w-[62vw] shrink-0 snap-center sm:w-auto group cursor-pointer flex flex-col justify-between rounded-2xl sm:rounded-3xl border border-line bg-paper p-2.5 sm:p-3 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gold/60 hover:-translate-y-1 text-right"
               role="button"
               tabIndex={0}
@@ -130,7 +127,6 @@ export function CategoryArches({ onSelectCategory }: CategoryArchesProps) {
                   src={cat.image}
                   alt={cat.title}
                   fill
-                  sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, 20vw"
                   sizes="(max-width: 639px) 75vw, (max-width: 1023px) 33vw, 20vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
