@@ -3,6 +3,13 @@
 import React from 'react';
 import Image from 'next/image';
 import { BotehMark, ShamsehEightStar } from './motifs';
+import {
+  BotehMark,
+  ShamsehEightStar,
+  ShamsehTwelveStar,
+  OrsiWindowLattice,
+  GirihDivider,
+} from './motifs';
 
 interface CategoryItem {
   id: string;
@@ -71,6 +78,17 @@ export function CategoryArches({ onSelectCategory }: CategoryArchesProps) {
 
   return (
     <section id="categories" className="scroll-mt-20 py-14 sm:py-20 bg-sand border-b border-line relative overflow-hidden">
+      {/* 1. Subtle Khatoon Star & Girih Faint Watermarks (Ultra-low opacity, non-intrusive) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.02] text-brand select-none overflow-hidden" aria-hidden="true">
+        <OrsiWindowLattice className="w-full h-full" />
+      </div>
+      <div className="pointer-events-none absolute -left-14 top-1/2 -translate-y-1/2 opacity-[0.04] text-gold select-none hidden lg:block" aria-hidden="true">
+        <ShamsehTwelveStar className="h-72 w-72" />
+      </div>
+      <div className="pointer-events-none absolute -right-14 top-1/2 -translate-y-1/2 opacity-[0.04] text-gold select-none hidden lg:block" aria-hidden="true">
+        <ShamsehTwelveStar className="h-72 w-72" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -78,6 +96,7 @@ export function CategoryArches({ onSelectCategory }: CategoryArchesProps) {
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-soft border border-gold/40 text-[#8A5A06] text-xs font-bold shadow-2xs">
             <BotehMark className="w-4 h-4 text-brand" />
             <span>دسته‌بندی‌های برگزیده ترمه تسنیم</span>
+            <ShamsehEightStar className="w-3.5 h-3.5 text-gold" />
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-ink tracking-tight">
             انتخاب بر اساس هنر، نقش و کاربری
@@ -146,6 +165,11 @@ export function CategoryArches({ onSelectCategory }: CategoryArchesProps) {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Delicate Persian Girih Divider bridging to the Catalog */}
+        <div className="max-w-xs sm:max-w-md mx-auto mt-12 sm:mt-16 opacity-60">
+          <GirihDivider />
         </div>
 
       </div>
