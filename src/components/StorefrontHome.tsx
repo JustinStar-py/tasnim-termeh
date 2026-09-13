@@ -12,6 +12,7 @@ import {
 import TermehMosaic from './TermehMosaic';
 import { ProductItem } from './BestsellersBand';
 import { CategoryArches } from './CategoryArches';
+import { InteractiveSilkHero } from './InteractiveSilkHero';
 
 interface StorefrontHomeProps {
   products: ProductItem[];
@@ -289,17 +290,39 @@ export function StorefrontHome({
             <span className="inline-block h-1 w-1 rounded-full bg-gold" />
             <span className="text-[10px] sm:text-[11px] text-amber-200/80 font-normal">ثبت جهانی یونسکو</span>
           </div>
+        {/* Hero Content: Luxury Persian Brand Stage with Interactive Suspended Silk Tapestry */}
+        <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-center">
+            
+            {/* Right Column (Text & Discovery CTAs) */}
+            <div className="text-right flex flex-col items-start space-y-6 max-w-2xl mx-auto lg:mx-0">
+              {/* Eyebrow Pill */}
+              <div className="inline-flex flex-wrap items-center gap-1.5 sm:gap-2 rounded-full border border-gold/40 bg-white/5 px-3.5 sm:px-4 py-1.5 text-[10px] xs:text-xs font-bold text-gold-soft backdrop-blur-md shadow-2xs">
+                <BotehMark className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gold" />
+                <span>تسنیم تِرمه · میراثِ اصالت و زری‌دوزی یزد</span>
+                <span className="inline-block h-1 w-1 rounded-full bg-gold" />
+                <span className="text-[10px] sm:text-[11px] text-amber-200/80 font-normal">ثبت جهانی یونسکو</span>
+              </div>
 
           {/* Majestic Royal Headline */}
           <h1 className="text-2xl xs:text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.35] sm:leading-[1.3] lg:leading-[1.25] max-w-4xl mx-auto">
             شکوهِ اصالت و هنرِ ترمه‌بافی ایران،
             <span className="block text-gold mt-2 sm:mt-3">در کالبدِ خانه‌های امروز</span>
           </h1>
+              {/* Majestic Royal Headline */}
+              <h1 className="text-2xl xs:text-3xl font-black tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.3] lg:leading-[1.25]">
+                شکوهِ اصالت و هنرِ ترمه‌بافی ایران،
+                <span className="block text-gold mt-2 sm:mt-3">در کالبدِ خانه‌های امروز</span>
+              </h1>
 
           {/* Poetic Narrative */}
           <p className="mt-4 sm:mt-6 max-w-2xl mx-auto text-xs sm:text-sm lg:text-base leading-6 sm:leading-8 text-[#F5E9D7]/85 font-normal">
             آفرینش نفیس‌ترین دست‌بافته‌های ابریشم طبیعی پیله، سرویس‌های سنتی شاه‌نشین و هدایای فاخر سازمانی؛ بافته‌شده با تار و پود زری و شناسنامه رسمی کارگاه‌های کهن یزد.
           </p>
+              {/* Poetic Narrative */}
+              <p className="text-xs sm:text-sm lg:text-base leading-6 sm:leading-8 text-[#F5E9D7]/85 font-normal">
+                آفرینش نفیس‌ترین دست‌بافته‌های ابریشم طبیعی پیله، سرویس‌های سنتی شاه‌نشین و هدایای فاخر سازمانی؛ بافته‌شده با تار و پود زری و شناسنامه رسمی کارگاه‌های کهن یزد.
+              </p>
 
           {/* Discovery Action Buttons */}
           <div className="mt-7 sm:mt-10 flex flex-col xs:flex-row items-center justify-center gap-3 sm:gap-4 w-full xs:w-auto">
@@ -319,16 +342,60 @@ export function StorefrontHome({
               <span className="text-gold" aria-hidden="true">✦</span>
             </button>
           </div>
+              {/* Discovery Action Buttons */}
+              <div className="pt-1 flex flex-col xs:flex-row items-center gap-3 sm:gap-4 w-full xs:w-auto">
+                <a
+                  href="#categories"
+                  className="w-full xs:w-auto inline-flex items-center justify-center gap-2.5 rounded-xl bg-gold px-6 py-3.5 text-xs sm:text-sm font-black text-[#2B1715] shadow-xl shadow-gold/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e0b745] cursor-pointer"
+                >
+                  <span>کاوش در دسته‌بندی‌های اصیل</span>
+                  <span aria-hidden="true" className="text-base">↓</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={onOpenConsultation}
+                  className="w-full xs:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-gold/40 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-bold text-white backdrop-blur-md transition-all duration-300 hover:bg-gold/15 hover:border-gold hover:text-gold cursor-pointer"
+                >
+                  <span>مشاوره و سفارش اختصاصی</span>
+                  <span className="text-gold" aria-hidden="true">✦</span>
+                </button>
+              </div>
 
           {/* 4-Pillar Artisanal Heritage Ribbon */}
           <div className="mt-10 sm:mt-18 max-w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 border-t border-white/15 pt-6 sm:pt-8 text-center">
             <div className="rounded-xl bg-white/[0.03] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:border-l sm:border-white/10 sm:pl-3">
               <strong className="block text-xs sm:text-base font-black text-white">۱۰۰٪ ابریشم</strong>
               <span className="text-[10px] sm:text-[11px] text-[#F5E9D7]/65">تار و پود طبیعی پیله</span>
+              {/* 4-Pillar Artisanal Heritage Ribbon */}
+              <div className="pt-6 w-full grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 border-t border-white/15 text-center">
+                <div className="rounded-xl bg-white/[0.04] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:border-l sm:border-white/10 sm:pl-2">
+                  <strong className="block text-xs sm:text-sm font-black text-white">۱۰۰٪ ابریشم</strong>
+                  <span className="text-[10px] text-[#F5E9D7]/65">تار و پود طبیعی پیله</span>
+                </div>
+                <div className="rounded-xl bg-white/[0.04] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:border-l sm:border-white/10 sm:px-2">
+                  <strong className="block text-xs sm:text-sm font-black text-white">دار سنتی</strong>
+                  <span className="text-[10px] text-[#F5E9D7]/65">بافندگان اصیل یزد</span>
+                </div>
+                <div className="rounded-xl bg-white/[0.04] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:border-l sm:border-white/10 sm:px-2">
+                  <strong className="block text-xs sm:text-sm font-black text-white">تراکم سنگین</strong>
+                  <span className="text-[10px] text-[#F5E9D7]/65">۲۸۰ تا ۳۲۰ گره</span>
+                </div>
+                <div className="rounded-xl bg-white/[0.04] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:pr-2">
+                  <strong className="block text-xs sm:text-base font-black text-white">شناسنامه کارگاه</strong>
+                  <span className="text-[10px] text-[#F5E9D7]/65">ضمانت اصالت و کیفیت</span>
+                </div>
+              </div>
             </div>
             <div className="rounded-xl bg-white/[0.03] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:border-l sm:border-white/10 sm:px-3">
               <strong className="block text-xs sm:text-base font-black text-white">دار سنتی</strong>
               <span className="text-[10px] sm:text-[11px] text-[#F5E9D7]/65">بافندگان اصیل یزد</span>
+
+            {/* Left Column: Interactive Suspended Silk Tapestry Canvas */}
+            <div className="w-full flex justify-center order-first lg:order-last">
+              <InteractiveSilkHero
+                imageSrc="/images/hero.jpg"
+                onOpenConsultation={onOpenConsultation}
+              />
             </div>
             <div className="rounded-xl bg-white/[0.03] border border-white/10 p-2.5 sm:bg-transparent sm:border-0 sm:border-l sm:border-white/10 sm:px-3">
               <strong className="block text-xs sm:text-base font-black text-white">تراکم سنگین</strong>
@@ -338,6 +405,7 @@ export function StorefrontHome({
               <strong className="block text-xs sm:text-base font-black text-white">شناسنامه کارگاه</strong>
               <span className="text-[10px] sm:text-[11px] text-[#F5E9D7]/65">ضمانت اصالت و کیفیت</span>
             </div>
+
           </div>
         </div>
       </section>
