@@ -35,6 +35,7 @@ export function FloatingActions({ onOpenConsultation }: FloatingActionsProps) {
 
   return (
     <div className="fixed bottom-5 right-5 z-40 flex flex-col items-start gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-start gap-2.5 sm:gap-3">
       {/* 1. Discount Coupon Floating Pill */}
       <button
         onClick={copyCoupon}
@@ -48,9 +49,11 @@ export function FloatingActions({ onOpenConsultation }: FloatingActionsProps) {
       <button
         onClick={onOpenConsultation}
         className="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-gradient-to-r from-brand to-brand-hover text-white text-xs sm:text-sm font-bold shadow-2xl shadow-brand/30 border border-gold/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        className="flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-gradient-to-r from-brand to-brand-hover text-white text-xs sm:text-sm font-bold shadow-2xl shadow-brand/30 border border-gold/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
         aria-label="پشتیبانی و مشاوره آنلاین"
       >
         <BotehMark className="w-5 h-5 text-gold animate-pulse" />
+        <BotehMark className="w-4 h-4 sm:w-5 sm:h-5 text-gold animate-pulse" />
         <span>مشاوره و پشتیبانی</span>
       </button>
 
@@ -59,6 +62,7 @@ export function FloatingActions({ onOpenConsultation }: FloatingActionsProps) {
         <button
           onClick={scrollToTop}
           className="w-10 h-10 rounded-full bg-paper border border-line hover:border-gold text-brand flex items-center justify-center text-sm shadow-md transition-all cursor-pointer self-start"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-paper border border-line hover:border-gold text-brand flex items-center justify-center text-xs sm:text-sm shadow-md transition-all cursor-pointer self-start"
           aria-label="بازگشت به بالای صفحه"
         >
           ▲
