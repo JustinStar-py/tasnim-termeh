@@ -1,17 +1,26 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BotehMark } from './motifs';
+import Image from 'next/image';
 
 interface HeaderProps {
   cartCount: number;
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  onSelectCategory: (category: string) => void;
   onOpenCart: () => void;
   onOpenConsultation: () => void;
 }
 
-export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProps) {
+export function Header({
+  cartCount,
+  searchQuery,
+  onSearchChange,
+  onSelectCategory,
+  onOpenCart,
+  onOpenConsultation,
+}: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const menuItems = [
@@ -19,45 +28,59 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
       id: 'table-runners',
       label: 'رومیزی و رانر',
       href: '#products',
-      sub: ['ست ۵ تکه پذیرایی', 'رانر تک ابریشم', 'بقچه سنتی مربع', 'رومیزی گرد و عسلی'],
+      category: 'table-runners',
+      sub: ['ست ۵ تکه پذیرایی', 'رانر تک ابریشم', 'رومیزی گرد و عسلی'],
     },
     {
       id: 'shahneshin',
       label: 'سرویس شاه‌نشین',
       href: '#shahneshin',
-      sub: ['ست ۷ تکه یزدی', 'ست ۹ تکه سلطنتی', 'تشک و بالشتک لمبه', 'سفارش ابعاد دلخواه'],
+      category: 'shahneshin',
+      sub: ['ست ۷ تکه یزدی', 'ست ۹ تکه سلطنتی', 'سفارش ابعاد دلخواه'],
     },
     {
       id: 'sajjadeh',
       label: 'سجاده و جانماز',
       href: '#products',
+      category: 'sajjadeh',
       sub: ['ست جانماز و سجاده ابریشم', 'جانماز جیبی نفیس', 'تسبیح صدف و عقیق'],
     },
     {
       id: 'corporate',
       label: 'هدایای سازمانی',
-      href: '#corporate',
-      sub: ['جعبه چوبی خاتم و ترمه', 'پک زعفران و رانر', 'هدایای همایش و سمینار'],
+      href: '#products',
+      category: 'corporate',
+      sub: ['پک‌های هدیه ترمه', 'جعبه چوبی خاتم و ترمه', 'هدایای همایش و سمینار'],
     },
     {
       id: 'patterns',
       label: 'خرید بر اساس طرح',
-      href: '#collections',
-      sub: ['طرح شاه‌عباسی', 'طرح بته‌جقه مادر و بچه', 'طرح ترنج و لچک', 'طرح درباری صفوی'],
+      href: '#products',
+      category: 'all',
+      sub: ['طرح شاه‌عباسی', 'طرح بته‌جقه مادر و بچه', 'طرح ترنج و لچک'],
     },
   ];
+
+  const handleCategoryClick = (category: string) => {
+    setActiveDropdown(null);
+    setMobileMenuOpen(false);
+    onSelectCategory(category);
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-md border-b border-line shadow-xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-20 flex items-center justify-between gap-4">
+        <div className="h-16 flex items-center justify-between gap-4">
           {/* 1. Right side: Brand Logo */}
           <div className="flex items-center gap-3 shrink-0">
             <a href="#" className="flex items-center gap-3 group">
-              <img
+              <Image
                 src="/images/logo.png"
                 alt="تسنیم ترمه"
-                className="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform drop-shadow-xs"
+                width={150}
+                height={58}
+                priority
+                className="h-11 w-auto object-contain drop-shadow-xs transition-transform group-hover:scale-105 sm:h-12"
               />
               <div className="text-right">
                 <span className="text-xl sm:text-2xl font-black text-brand tracking-tight block">
@@ -76,12 +99,15 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="جستجو در نام محصول، طرح شاه‌عباسی، رانر، شاه‌نشین…"
                 className="w-full pl-10 pr-4 py-2.5 text-xs rounded-full border border-line bg-sand focus:bg-white focus:outline-hidden focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all"
               />
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted/70">
-                🔍
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted/70" aria-hidden="true">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="7" strokeWidth="1.8" />
+                  <path strokeLinecap="round" strokeWidth="1.8" d="m20 20-4-4" />
+                </svg>
               </span>
             </div>
           </div>
@@ -110,7 +136,7 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
                 />
               </svg>
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand text-white text-[11px] font-black flex items-center justify-center border-2 border-paper animate-bounce">
+                <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full border-2 border-paper bg-brand text-[11px] font-black text-white">
                   {cartCount}
                 </span>
               )}
@@ -130,6 +156,8 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 rounded-xl text-brand hover:bg-brand-soft"
               aria-label="منو"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? (
@@ -157,6 +185,7 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
             >
               <a
                 href={item.href}
+                onClick={() => handleCategoryClick(item.category)}
                 className="hover:text-brand flex items-center gap-1 py-1 transition-colors"
               >
                 <span>{item.label}</span>
@@ -173,6 +202,7 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
                       <a
                         key={idx}
                         href={item.href}
+                        onClick={() => handleCategoryClick(item.category)}
                         className="block px-3 py-2 rounded-lg text-xs text-ink hover:bg-gold-soft hover:text-brand transition-colors"
                       >
                         {subItem}
@@ -184,24 +214,23 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
             </div>
           ))}
 
-          <a href="#artisan" className="hover:text-brand transition-colors">
-            کارگاه و اصالت بافت
+          <a href="#atelier" className="hover:text-brand transition-colors">
+            شاه‌نشین و سفارش اختصاصی
           </a>
-          <a href="#magazine" className="hover:text-brand transition-colors">
-            مجلهٔ ترمه
-          </a>
-          <a href="#about" className="hover:text-brand transition-colors">
-            دربارهٔ تسنیم
+          <a href="#atelier" className="hover:text-brand transition-colors">
+            داستان تسنیم
           </a>
         </nav>
 
         {/* Mobile Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-line bg-paper px-4 py-5 space-y-4 shadow-xl">
+          <div id="mobile-navigation" className="lg:hidden border-t border-line bg-paper px-4 py-5 space-y-4 shadow-xl">
             {/* Search Input for Mobile */}
             <div className="relative">
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="جستجو در محصولات…"
                 className="w-full px-4 py-2.5 text-xs rounded-xl border border-line bg-sand"
               />
@@ -219,25 +248,25 @@ export function Header({ cartCount, onOpenCart, onOpenConsultation }: HeaderProp
                 <a
                   key={item.id}
                   href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => handleCategoryClick(item.category)}
                   className="block py-2 hover:text-brand border-b border-line/40"
                 >
                   {item.label}
                 </a>
               ))}
               <a
-                href="#artisan"
+                href="#atelier"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block py-2 hover:text-brand border-b border-line/40"
               >
-                کارگاه و بافت اصیل
+                شاه‌نشین و سفارش اختصاصی
               </a>
               <a
-                href="#magazine"
+                href="#atelier"
                 onClick={() => setMobileMenuOpen(false)}
                 className="block py-2 hover:text-brand border-b border-line/40"
               >
-                مجله و راهنمای نگهداری
+                داستان تسنیم
               </a>
             </div>
 

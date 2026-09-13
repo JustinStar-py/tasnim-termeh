@@ -25,11 +25,11 @@ export function TopBar() {
 
         {/* Quick links & Dismiss */}
         <div className="hidden lg:flex items-center gap-4 text-xs text-gold-soft/80">
-          <a href="#contact" className="hover:text-white transition-colors">
+          <a href="tel:03536220000" className="hover:text-white transition-colors">
             پیگیری سفارش
           </a>
           <span className="text-gold/40">|</span>
-          <a href="#contact" className="hover:text-white transition-colors">
+          <a href="#atelier" className="hover:text-white transition-colors">
             مشاورهٔ تخصصی
           </a>
         </div>

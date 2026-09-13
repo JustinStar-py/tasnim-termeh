@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { ProductItem } from './BestsellersBand';
-import { BotehMark, ShamsehOrnament } from './motifs';
+import { BotehMark } from './motifs';
 
 export interface CartItem {
   product: ProductItem;
@@ -57,28 +57,30 @@ export function CartDrawer({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div className="fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true" aria-labelledby="cart-title">
       {/* Backdrop */}
       <div
         onClick={onClose}
         className="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+        aria-label="بستن سبد خرید"
       />
 
-      <div className="fixed inset-y-0 left-0 max-w-full flex pl-0 pr-10">
-        <div className="w-screen max-w-md bg-paper border-r border-line shadow-2xl flex flex-col justify-between">
+      <div className="fixed inset-y-0 right-0 flex max-w-full pl-10 pr-0">
+        <div className="flex w-screen max-w-md flex-col justify-between border-l border-line bg-paper shadow-2xl">
           {/* Header */}
           <div className="p-5 border-b border-line flex items-center justify-between bg-sand">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-brand text-gold flex items-center justify-center">
                 <BotehMark className="w-5 h-5 text-gold" />
               </div>
-              <h3 className="font-bold text-sm text-ink">
+              <h3 id="cart-title" className="text-sm font-bold text-ink">
                 سبد خرید شما ({items.reduce((s, i) => s + i.quantity, 0)} کالا)
               </h3>
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-ink-muted hover:text-ink hover:bg-paper text-sm cursor-pointer"
+              className="cursor-pointer rounded-lg p-1.5 text-sm text-ink-muted hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              aria-label="بستن سبد خرید"
             >
               ✕
             </button>
@@ -144,6 +146,7 @@ export function CartDrawer({
                             onUpdateQuantity(item.product.id, item.quantity + 1)
                           }
                           className="text-xs font-bold text-brand hover:text-gold px-1"
+                          aria-label={`افزایش تعداد ${item.product.title}`}
                         >
                           +
                         </button>
@@ -157,6 +160,7 @@ export function CartDrawer({
                             }
                           }}
                           className="text-xs font-bold text-ink-muted hover:text-red-600 px-1"
+                          aria-label={`کاهش تعداد ${item.product.title}`}
                         >
                           -
                         </button>

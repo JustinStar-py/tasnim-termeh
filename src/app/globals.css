@@ -220,6 +220,25 @@ body {
   animation: mote-rise linear infinite;
 }
 
+/* A quiet nod to the Khatoon stars in the hero, never a competing animation. */
+@keyframes khatoon-drift {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: rotate(8deg) scale(1.06);
+    opacity: 0.95;
+  }
+}
+
+.khatoon-star {
+  display: block;
+  transform-origin: center;
+  animation: khatoon-drift 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(197, 155, 39, 0.28));
+}
+
 /* ======================================================== */
 /*  Scroll-Triggered Reveal & Motion System                 */
 /* ======================================================== */
@@ -249,4 +268,18 @@ body {
 .reveal-delay-400 { transition-delay: 400ms; }
 .reveal-delay-500 { transition-delay: 500ms; }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 

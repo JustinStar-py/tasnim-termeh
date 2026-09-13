@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
-import { BotehMark, ShamsehOrnament } from './motifs';
+import { ShamsehOrnament } from './motifs';
 
 interface SlideData {
   id: number;
@@ -55,7 +55,7 @@ export function HeroSlider({ onOpenConsultation }: HeroSliderProps) {
       subtitle: 'همراه با جعبه‌های خاتم‌کاری سنتی',
       description:
         'ارائه نفیس‌ترین ست‌های کادویی ترمه ابریشمی همراه با پلاک فلزی لوگوی سازمان، ظروف برنجی و زعفران اعلای ایرانی در بسته‌بندی چوبی گردو.',
-      primaryCta: { text: 'مشاهده هدایای سازمانی', href: '#corporate' },
+      primaryCta: { text: 'مشاهده هدایای سازمانی', href: '#products' },
       secondaryCta: { text: 'دریافت پیش‌فاکتور عمده', onClick: onOpenConsultation },
       image: '/images/corporate-gift.jpg',
       badge: 'بسته‌بندی خاتم‌کاری',
@@ -100,7 +100,6 @@ export function HeroSlider({ onOpenConsultation }: HeroSliderProps) {
   useEffect(() => {
     if (!emblaApi) return;
     emblaApi.on('select', onSelect);
-    onSelect();
 
     // Subtle autoplay timer
     const interval = setInterval(() => {

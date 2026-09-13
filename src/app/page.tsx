@@ -3,25 +3,13 @@
 import React, { useState } from 'react';
 import { TopBar } from '@/components/TopBar';
 import { Header } from '@/components/Header';
-import { HeroMasterpiece } from '@/components/HeroMasterpiece';
-import { CategoryArches } from '@/components/CategoryArches';
-import { BestsellersBand, ProductItem } from '@/components/BestsellersBand';
-import { CollectionSpotlight } from '@/components/CollectionSpotlight';
-import { CuratedPicks } from '@/components/CuratedPicks';
-import { ShahneshinFeature } from '@/components/ShahneshinFeature';
-import { CorporateGiftSection } from '@/components/CorporateGiftSection';
-import { ProductCatalog } from '@/components/ProductCatalog';
-import { ValueProps } from '@/components/ValueProps';
-import { SeoHeritageStory } from '@/components/SeoHeritageStory';
-import { TermehMagazine } from '@/components/TermehMagazine';
+import { ProductItem } from '@/components/BestsellersBand';
+import { StorefrontHome } from '@/components/StorefrontHome';
 import { Footer } from '@/components/Footer';
 import { CartDrawer, CartItem } from '@/components/CartDrawer';
 import { ProductQuickView } from '@/components/ProductQuickView';
 import { ConsultationModal } from '@/components/ConsultationModal';
 import { FloatingActions } from '@/components/FloatingActions';
-import { ScrollRevealObserver } from '@/components/ScrollRevealObserver';
-
-import { GlobalIslamicClipDefs } from '@/components/motifs';
 
 const allProducts: ProductItem[] = [
   {
@@ -119,9 +107,8 @@ const allProducts: ProductItem[] = [
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    { product: allProducts[0], quantity: 1 },
-  ]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<ProductItem | null>(null);
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
@@ -164,92 +151,30 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-sand text-ink flex flex-col font-sans selection:bg-gold/30 selection:text-brand">
-      {/* Global SVG Islamic Arch Clip Paths */}
-      <GlobalIslamicClipDefs />
-
       {/* 1. Top Utility Notification Bar */}
       <TopBar />
 
       {/* 2. Sticky Header with Mega-Menu & Cart */}
       <Header
         cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+        onSelectCategory={handleCategorySelect}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenConsultation={() => setIsConsultationOpen(true)}
       />
 
-      {/* Scroll-Triggered Reveal Engine */}
-      <ScrollRevealObserver />
-
-      {/* Main Page Flow */}
-      <main className="flex-1">
-        {/* 3. Yazdi Girih Burgundy-Gold Termeh Mosaic & Floating Cartouche Hero */}
-        <HeroMasterpiece onOpenConsultation={() => setIsConsultationOpen(true)} />
-
-        {/* 4. Mihrab Arch Category Cards */}
-        <div className="reveal-init">
-          <CategoryArches onSelectCategory={handleCategorySelect} />
-        </div>
-
-        {/* 5. Bestsellers Band (Burgundy Girih Carousel) */}
-        <div className="reveal-init">
-          <BestsellersBand
-            products={allProducts}
-            onAddToCart={handleAddToCart}
-            onQuickView={(p) => setQuickViewProduct(p)}
-          />
-        </div>
-
-        {/* 6. Collection / Motif Spotlight Blocks */}
-        <div className="reveal-init">
-          <CollectionSpotlight onExploreCollection={handleCategorySelect} />
-        </div>
-
-        {/* 7. Curated Artisan Picks (Editorial Layout) */}
-        <div className="reveal-init">
-          <CuratedPicks
-            products={allProducts}
-            onAddToCart={handleAddToCart}
-            onQuickView={(p) => setQuickViewProduct(p)}
-            onOpenConsultation={() => setIsConsultationOpen(true)}
-          />
-        </div>
-
-        {/* 8. Flagship Shahneshin Feature */}
-        <div className="reveal-init">
-          <ShahneshinFeature onOpenConsultation={() => setIsConsultationOpen(true)} />
-        </div>
-
-        {/* 9. Corporate Gift Boxes Section */}
-        <div className="reveal-init">
-          <CorporateGiftSection onOpenConsultation={() => setIsConsultationOpen(true)} />
-        </div>
-
-        {/* 10. Complete Interactive Product Catalog */}
-        <div className="reveal-init">
-          <ProductCatalog
-            products={allProducts}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-            onAddToCart={handleAddToCart}
-            onQuickView={(p) => setQuickViewProduct(p)}
-          />
-        </div>
-
-        {/* 11. Value Propositions (4 Soft-Tinted Motif Cards) */}
-        <div className="reveal-init">
-          <ValueProps />
-        </div>
-
-        {/* 12. SEO & UNESCO Yazd Heritage Story */}
-        <div className="reveal-init">
-          <SeoHeritageStory />
-        </div>
-
-        {/* 13. Termeh Magazine Strip */}
-        <div className="reveal-init">
-          <TermehMagazine />
-        </div>
-      </main>
+      {/* A focused storefront: the hero, one catalog, and one flagship story. */}
+      <StorefrontHome
+        products={allProducts}
+        selectedCategory={selectedCategory}
+        searchQuery={searchQuery}
+        onSelectCategory={handleCategorySelect}
+        onSearchChange={setSearchQuery}
+        onAddToCart={handleAddToCart}
+        onQuickView={(product) => setQuickViewProduct(product)}
+        onOpenConsultation={() => setIsConsultationOpen(true)}
+      />
 
       {/* 14. Luxury Persian Footer */}
       <Footer />

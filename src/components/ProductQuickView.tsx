@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { ProductItem } from './BestsellersBand';
-import { PersianArchImageFrame, ShamsehEightStar, ShamsehTwelveStar, BotehMark } from './motifs';
+import { ShamsehEightStar } from './motifs';
 
 interface ProductQuickViewProps {
   product: ProductItem | null;
@@ -15,28 +15,38 @@ export function ProductQuickView({ product, onClose, onAddToCart }: ProductQuick
   if (!product) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-paper rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 border-2 border-gold/40 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs"
+      role="presentation"
+      onClick={onClose}
+    >
+      <div
+        className="relative max-h-[90vh] w-full max-w-2xl space-y-6 overflow-y-auto rounded-3xl border border-gold/40 bg-paper p-6 shadow-2xl sm:p-8"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="quick-view-title"
+        onClick={(event) => event.stopPropagation()}
+      >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-5 left-5 text-ink-muted hover:text-ink p-2 rounded-full hover:bg-sand transition-colors cursor-pointer z-40"
+          className="absolute left-5 top-5 z-40 rounded-full p-2 text-ink-muted transition-colors hover:bg-sand hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           aria-label="بستن"
         >
           ✕
         </button>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-          {/* Persian Arch-Framed Image */}
-          <div className="relative">
-            <PersianArchImageFrame variant="pointed" badge={product.badge} className="aspect-square w-full">
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                className="object-cover"
-              />
-            </PersianArchImageFrame>
+          {/* Keep the full textile visible; the star mark carries the ornament. */}
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-line bg-sand shadow-card">
+            <Image src={product.image} alt={product.title} fill sizes="(max-width: 767px) 100vw, 45vw" className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent" />
+            {product.badge && (
+              <span className="absolute right-3 top-3 rounded-full border border-white/60 bg-brand px-2.5 py-1 text-[10px] font-bold text-white shadow-lg">
+                {product.badge}
+              </span>
+            )}
+            <ShamsehEightStar className="absolute bottom-3 left-3 h-8 w-8 text-gold drop-shadow-md" />
           </div>
 
           {/* Details */}
@@ -46,7 +56,7 @@ export function ProductQuickView({ product, onClose, onAddToCart }: ProductQuick
                 <ShamsehEightStar className="w-3.5 h-3.5 text-gold" />
                 <span>تولید اصل یزد • دارای شناسنامه رسمی</span>
               </span>
-              <h3 className="text-lg sm:text-xl font-bold text-ink leading-snug">
+                <h3 id="quick-view-title" className="text-lg font-bold leading-snug text-ink sm:text-xl">
                 {product.title}
               </h3>
             </div>

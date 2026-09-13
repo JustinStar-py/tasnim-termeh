@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { BotehMark, KhatamBorder, ShamsehOrnament } from './motifs';
+import { KhatamBorder } from './motifs';
 
 export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -95,12 +95,12 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#corporate" className="hover:text-gold transition-colors">
+                <a href="#products" className="hover:text-gold transition-colors">
                   هدایای سازمانی و چوبی
                 </a>
               </li>
               <li>
-                <a href="#collections" className="hover:text-gold transition-colors">
+                <a href="#products" className="hover:text-gold transition-colors">
                   خرید بر اساس طرح کهن
                 </a>
               </li>
