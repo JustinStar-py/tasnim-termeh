@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { BotehMark, ShamsehEightStar, ShamsehTwelveStar } from './motifs';
 import TermehMosaic from './TermehMosaic';
 import { ProductItem } from './BestsellersBand';
+import { CategoryArches } from './CategoryArches';
 
 interface StorefrontHomeProps {
   products: ProductItem[];
@@ -161,119 +162,89 @@ export function StorefrontHome({
 
   return (
     <main className="overflow-hidden">
-      <section id="hero" className="relative isolate overflow-hidden bg-[#210f15] text-[#fffaf1]">
-        <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-          <div className="absolute inset-y-0 left-0 w-full opacity-30 mix-blend-screen lg:w-[62%] lg:opacity-45">
+      {/* 1. Full-Width Khatam Stars & Termeh Heritage Hero Section */}
+      <section id="hero" className="relative isolate overflow-hidden bg-[#1D0C13] text-[#fffaf1] border-b border-gold/30">
+        {/* Full-Bleed Khatam Star & Termeh Mosaic Background across 100% of the canvas */}
+        <div className="pointer-events-none absolute inset-0 select-none overflow-hidden" aria-hidden="true">
+          <div className="absolute inset-0 h-full w-full opacity-35 mix-blend-screen scale-[1.02]">
             <TermehMosaic />
           </div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_20%,rgba(197,155,39,0.2),transparent_30%),linear-gradient(90deg,rgba(33,15,21,0.15),#210f15_78%)]" />
-          <div className="absolute -left-24 top-1/3 h-72 w-72 rounded-full bg-turquoise/15 blur-3xl" />
-          <div className="absolute -right-28 bottom-0 h-96 w-96 rounded-full bg-brand/60 blur-3xl" />
+          {/* Multi-layered luxury vignette & radial depth for contrast & elegance */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_50%_40%,rgba(37,15,23,0.72)_0%,rgba(24,9,15,0.94)_70%,#16060c_100%)]" />
+          <div className="absolute -left-28 top-1/4 h-80 w-80 rounded-full bg-gold/15 blur-[120px]" />
+          <div className="absolute -right-28 bottom-10 h-96 w-96 rounded-full bg-brand/50 blur-[140px]" />
+          <div className="absolute top-8 left-10 opacity-15 hidden lg:block">
+            <ShamsehTwelveStar className="h-28 w-28 text-gold" />
+          </div>
+          <div className="absolute bottom-8 right-10 opacity-15 hidden lg:block">
+            <ShamsehTwelveStar className="h-24 w-24 text-gold" />
+          </div>
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:px-8 lg:pb-20 lg:pt-16">
-          <div className="grid items-center gap-12 lg:min-h-[610px] lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
-            <div className="relative order-2 text-right lg:order-1">
-              <KhatoonStar className="absolute -right-3 -top-10 h-12 w-12 opacity-70 sm:-right-8 sm:-top-14 sm:h-16 sm:w-16" />
-              <KhatoonStar className="absolute -bottom-8 left-0 hidden h-9 w-9 opacity-45 sm:block" />
+        {/* Hero Content: Grand Persian Brand Stage (Zero Sales Cards) */}
+        <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28 text-center">
+          {/* Eyebrow Pill */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-xs font-bold text-gold-soft backdrop-blur-md shadow-2xs">
+            <BotehMark className="h-4 w-4 text-gold" />
+            <span>تسنیم تِرمه · میراثِ اصالت و زری‌دوزی یزد</span>
+            <span className="inline-block h-1 w-1 rounded-full bg-gold" />
+            <span className="text-[11px] text-amber-200/80 font-normal">ثبت جهانی یونسکو</span>
+          </div>
 
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-3 py-1.5 text-[11px] font-bold text-gold-soft backdrop-blur-sm">
-                <BotehMark className="h-4 w-4 text-gold" />
-                <span>تسنیم ترمه · بافته‌شده در یزد</span>
-              </div>
+          {/* Majestic Royal Headline */}
+          <h1 className="text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.3] lg:leading-[1.25] max-w-4xl mx-auto">
+            شکوهِ اصالت و هنرِ ترمه‌بافی ایران،
+            <span className="block text-gold mt-2 sm:mt-3">در کالبدِ خانه‌های امروز</span>
+          </h1>
 
-              <h1 className="max-w-xl text-4xl font-black leading-[1.35] tracking-tight text-white sm:text-5xl lg:text-[4.2rem]">
-                ترمه،
-                <span className="block text-gold">برای ماندن.</span>
-              </h1>
-              <p className="mt-5 max-w-lg text-sm leading-8 text-[#f5e9d7]/80 sm:text-base">
-                نقش‌های اصیل یزد، در بافتی که هر روز زیباتر می‌شود. رومیزی، شاه‌نشین و
-                هدایای ترمه‌ای را با قیمت روشن و ضمانت اصالت انتخاب کنید.
-              </p>
+          {/* Poetic Narrative */}
+          <p className="mt-6 max-w-2xl mx-auto text-xs sm:text-sm lg:text-base leading-relaxed sm:leading-8 text-[#F5E9D7]/85 font-normal">
+            آفرینش نفیس‌ترین دست‌بافته‌های ابریشم طبیعی پیله، سرویس‌های سنتی شاه‌نشین و هدایای فاخر سازمانی؛ بافته‌شده با تار و پود زری و شناسنامه رسمی کارگاه‌های کهن یزد.
+          </p>
 
-              <div className="mt-7 flex flex-wrap items-center justify-start gap-3">
-                <a
-                  href="#products"
-                  className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-xs font-black text-[#2b1715] shadow-xl shadow-black/15 transition-all hover:-translate-y-0.5 hover:bg-[#d9b34f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#210f15] sm:text-sm"
-                >
-                  دیدن مجموعه ترمه
-                  <span aria-hidden="true">←</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={onOpenConsultation}
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/5 px-5 py-3 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:border-gold hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-sm"
-                >
-                  سفارش اختصاصی
-                  <span aria-hidden="true">↗</span>
-                </button>
-              </div>
+          {/* Discovery Action Buttons */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#categories"
+              className="inline-flex items-center gap-2.5 rounded-xl bg-gold px-6 py-3.5 text-xs sm:text-sm font-black text-[#2B1715] shadow-xl shadow-gold/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e0b745] cursor-pointer"
+            >
+              <span>کاوش در دسته‌بندی‌های اصیل</span>
+              <span aria-hidden="true" className="text-base">↓</span>
+            </a>
+            <button
+              type="button"
+              onClick={onOpenConsultation}
+              className="inline-flex items-center gap-2 rounded-xl border border-gold/40 bg-white/5 px-6 py-3.5 text-xs sm:text-sm font-bold text-white backdrop-blur-md transition-all duration-300 hover:bg-gold/15 hover:border-gold hover:text-gold cursor-pointer"
+            >
+              <span>مشاوره و سفارش اختصاصی</span>
+              <span className="text-gold" aria-hidden="true">✦</span>
+            </button>
+          </div>
 
-              <div className="mt-9 grid max-w-lg grid-cols-3 border-t border-white/15 pt-5 text-right">
-                <div className="border-l border-white/15 pl-3">
-                  <strong className="block text-sm font-black text-white">۱۰۰٪</strong>
-                  <span className="text-[10px] text-[#f5e9d7]/65">ابریشم طبیعی</span>
-                </div>
-                <div className="border-l border-white/15 px-3">
-                  <strong className="block text-sm font-black text-white">یزد</strong>
-                  <span className="text-[10px] text-[#f5e9d7]/65">مبدأ بافت</span>
-                </div>
-                <div className="pr-3">
-                  <strong className="block text-sm font-black text-white">۷ روز</strong>
-                  <span className="text-[10px] text-[#f5e9d7]/65">ضمانت بازگشت</span>
-                </div>
-              </div>
+          {/* 4-Pillar Artisanal Heritage Ribbon */}
+          <div className="mt-14 sm:mt-18 max-w-3xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3.5 border-t border-white/15 pt-8 text-center">
+            <div className="border-l border-white/10 pl-3">
+              <strong className="block text-sm sm:text-base font-black text-white">۱۰۰٪ ابریشم</strong>
+              <span className="text-[11px] text-[#F5E9D7]/65">تار و پود طبیعی پیله</span>
             </div>
-
-            <div className="relative order-1 mx-auto w-full max-w-[570px] pb-20 lg:order-2 lg:pb-8">
-              <div className="absolute -right-5 -top-5 z-20 hidden items-center gap-2 rounded-full border border-gold/40 bg-[#2d151b]/90 px-3 py-2 text-[10px] font-bold text-gold-soft shadow-xl backdrop-blur-md sm:flex">
-                <ShamsehEightStar className="h-4 w-4 text-gold" />
-                <span>ستاره‌های خاتون</span>
-              </div>
-
-              <div className="relative aspect-[4/4.7] overflow-hidden rounded-[2rem] border border-gold/45 bg-sand-dark shadow-[0_30px_80px_-25px_rgba(0,0,0,0.7)]">
-                <Image
-                  src={signatureProduct.image}
-                  alt="ست رومیزی ترمه فیروزه‌ای و طلایی روی میز پذیرایی"
-                  fill
-                  priority
-                  sizes="(max-width: 1023px) 92vw, 48vw"
-                  className="object-cover transition-transform duration-1000 hover:scale-[1.03]"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1c0d12]/85 via-transparent to-[#1c0d12]/5" />
-                <div className="absolute right-4 top-4 rounded-full border border-white/60 bg-paper/90 px-3 py-1 text-[10px] font-bold text-brand shadow-lg backdrop-blur-sm">
-                  {signatureProduct.badge}
-                </div>
-                <div className="absolute bottom-4 left-4 rounded-full border border-gold/60 bg-[#210f15]/80 px-3 py-1 text-[10px] font-medium text-gold-soft backdrop-blur-sm">
-                  دست‌چین از کارگاه یزد
-                </div>
-              </div>
-
-              <div className="absolute -bottom-1 right-4 left-4 z-10 rounded-2xl border border-gold/35 bg-[#fffaf1]/95 p-4 text-right text-ink shadow-2xl backdrop-blur-md sm:right-8 sm:left-8 sm:p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <span className="mb-1 block text-[10px] font-bold text-brand">پیشنهاد امضای تسنیم</span>
-                    <h2 className="line-clamp-1 text-sm font-black leading-6 sm:text-base">{signatureProduct.title}</h2>
-                  </div>
-                  <ShamsehEightStar className="h-6 w-6 shrink-0 text-gold" />
-                </div>
-                <div className="mt-3 flex items-center justify-between gap-3 border-t border-line pt-3">
-                  <strong className="text-lg font-black tabular-nums text-brand">
-                    {toPersianDigits(signatureProduct.price)} <small className="text-[10px] font-bold text-ink-muted">تومان</small>
-                  </strong>
-                  <button
-                    type="button"
-                    onClick={() => onAddToCart(signatureProduct)}
-                    className="rounded-xl bg-brand px-4 py-2.5 text-[11px] font-bold text-white transition-colors hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-                  >
-                    افزودن به سبد
-                  </button>
-                </div>
-              </div>
+            <div className="border-l border-white/10 px-3">
+              <strong className="block text-sm sm:text-base font-black text-white">دار سنتی</strong>
+              <span className="text-[11px] text-[#F5E9D7]/65">بافندگان اصیل یزد</span>
+            </div>
+            <div className="border-l border-white/10 px-3">
+              <strong className="block text-sm sm:text-base font-black text-white">تراکم سنگین</strong>
+              <span className="text-[11px] text-[#F5E9D7]/65">۲۸۰ تا ۳۲۰ گره در سانتیمتر</span>
+            </div>
+            <div className="pr-3">
+              <strong className="block text-sm sm:text-base font-black text-white">شناسنامه کارگاه</strong>
+              <span className="text-[11px] text-[#F5E9D7]/65">ضمانت اصالت و کیفیت</span>
             </div>
           </div>
         </div>
       </section>
+
+      {/* 2. Authentic Persian Architectural Category Arches */}
+      <CategoryArches onSelectCategory={onSelectCategory} />
 
       <section id="products" className="scroll-mt-24 bg-sand py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
