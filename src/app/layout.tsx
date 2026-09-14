@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { StorefrontShell } from '@/components/StorefrontShell';
 
 const shabnam = localFont({
   src: [
@@ -53,7 +54,7 @@ export default function RootLayout({
         className="min-h-screen bg-[var(--color-sand)] text-[var(--color-ink)] font-sans antialiased"
         suppressHydrationWarning
       >
-        {children}
+        <StorefrontShell>{children}</StorefrontShell>
       </body>
     </html>
   );

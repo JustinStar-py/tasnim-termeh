@@ -1,15 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import { TopBar } from '@/components/TopBar';
-import { Header } from '@/components/Header';
 import { ProductItem } from '@/components/BestsellersBand';
 import { StorefrontHome } from '@/components/StorefrontHome';
-import { Footer } from '@/components/Footer';
-import { CartDrawer, CartItem } from '@/components/CartDrawer';
-import { ProductQuickView } from '@/components/ProductQuickView';
-import { ConsultationModal } from '@/components/ConsultationModal';
-import { FloatingActions } from '@/components/FloatingActions';
+import { useStorefront } from '@/components/StorefrontShell';
 
 const allProducts: ProductItem[] = [
   {
@@ -106,107 +99,6 @@ const allProducts: ProductItem[] = [
 ];
 
 export default function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [quickViewProduct, setQuickViewProduct] = useState<ProductItem | null>(null);
-  const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-
-  // Cart operations
-  const handleAddToCart = (product: ProductItem) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prev, { product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
-
-  const handleUpdateQuantity = (productId: number, newQty: number) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.product.id === productId ? { ...item, quantity: newQty } : item
-      )
-    );
-  };
-
-  const handleRemoveCartItem = (productId: number) => {
-    setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
-  };
-
-  const handleCategorySelect = (catId: string) => {
-    setSelectedCategory(catId);
-    const elem = document.getElementById('products');
-    if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-sand text-ink flex flex-col font-sans selection:bg-gold/30 selection:text-brand">
-      {/* 1. Top Utility Notification Bar */}
-      <TopBar />
-
-      {/* 2. Sticky Header with Mega-Menu & Cart */}
-      <Header
-        cartCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        onSelectCategory={handleCategorySelect}
-        onOpenCart={() => setIsCartOpen(true)}
-        onOpenConsultation={() => setIsConsultationOpen(true)}
-      />
-
-      {/* A focused storefront: the hero, one catalog, and one flagship story. */}
-      <StorefrontHome
-        products={allProducts}
-        selectedCategory={selectedCategory}
-        searchQuery={searchQuery}
-        onSelectCategory={handleCategorySelect}
-        onSearchChange={setSearchQuery}
-        onAddToCart={handleAddToCart}
-        onQuickView={(product) => setQuickViewProduct(product)}
-        onOpenConsultation={() => setIsConsultationOpen(true)}
-      />
-
-      {/* 14. Luxury Persian Footer */}
-      <Footer />
-
-      {/* 15. Slide-Over Cart Drawer */}
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveCartItem}
-        onCheckout={() => {
-          setIsCartOpen(false);
-          setIsConsultationOpen(true);
-        }}
-      />
-
-      {/* 16. Product Quick View Modal */}
-      <ProductQuickView
-        product={quickViewProduct}
-        onClose={() => setQuickViewProduct(null)}
-        onAddToCart={handleAddToCart}
-      />
-
-      {/* 17. Consultation / Custom Order Modal */}
-      <ConsultationModal
-        isOpen={isConsultationOpen}
-        onClose={() => setIsConsultationOpen(false)}
-      />
-
-      {/* 18. Floating Support & Discount Actions */}
-      <FloatingActions onOpenConsultation={() => setIsConsultationOpen(true)} />
-    </div>
-  );
+  const storefront = useStorefront();
+  return <StorefrontHome products={allProducts} {...storefront} />;
 }
