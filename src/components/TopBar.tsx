@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { BotehMark } from './motifs';
+import Link from 'next/link';
 
 export function TopBar() {
   const [dismissed, setDismissed] = useState(false);
@@ -29,9 +30,9 @@ export function TopBar() {
             پیگیری سفارش
           </a>
           <span className="text-gold/40">|</span>
-          <a href="#atelier" className="hover:text-white transition-colors">
+          <Link href="/contact" className="hover:text-white transition-colors">
             مشاورهٔ تخصصی
-          </a>
+          </Link>
         </div>
 
         <button

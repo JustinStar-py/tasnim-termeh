@@ -49,6 +49,40 @@ body {
   overflow-x: hidden;
 }
 
+/* Shared editorial and customer-care pages. */
+.info-container {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.info-eyebrow {
+  @apply mb-3 text-xs font-bold text-brand;
+}
+
+.info-heading {
+  @apply text-2xl font-bold leading-relaxed text-ink sm:text-3xl sm:leading-relaxed;
+}
+
+.info-button {
+  @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-xl bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-hover;
+}
+
+.info-label {
+  @apply mb-2 block text-xs font-bold text-ink;
+}
+
+.info-input {
+  @apply w-full min-w-0 rounded-xl border border-line bg-sand px-4 py-3 text-sm text-ink transition-colors placeholder:text-ink-muted/70 focus:border-gold focus:bg-paper focus:outline-none focus:ring-2 focus:ring-gold/20;
+}
+
+:where(a, button, summary, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  @apply fixed start-4 top-4 z-[100] -translate-y-24 rounded-xl bg-paper px-5 py-3 text-sm font-bold text-brand shadow-lg focus:translate-y-0;
+}
+
 /* Persian Arch (Mihrab) Shape Clip-Path */
 .clip-arch {
   clip-path: polygon(

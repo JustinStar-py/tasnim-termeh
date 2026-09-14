@@ -2,11 +2,14 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface HeaderProps {
   cartCount: number;
   searchQuery: string;
   onSearchChange: (query: string) => void;
+  onSearchSubmit: () => void;
   onSelectCategory: (category: string) => void;
   onOpenCart: () => void;
   onOpenConsultation: () => void;
@@ -16,12 +19,20 @@ export function Header({
   cartCount,
   searchQuery,
   onSearchChange,
+  onSearchSubmit,
   onSelectCategory,
   onOpenCart,
   onOpenConsultation,
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
+  const pageLinks = [
+    { href: '/about', label: 'درباره تسنیم' },
+    { href: '/contact', label: 'تماس با ما' },
+    { href: '/faq', label: 'پرسش‌های متداول' },
+    { href: '/care', label: 'نگهداری ترمه' },
+  ];
 
   const menuItems = [
     {
@@ -73,7 +84,7 @@ export function Header({
         <div className="h-16 flex items-center justify-between gap-4">
           {/* 1. Right side: Brand Logo */}
           <div className="flex items-center gap-3 shrink-0">
-            <a href="#" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group">
               <Image
                 src="/images/logo.png"
                 alt="تسنیم ترمه"
@@ -90,26 +101,27 @@ export function Header({
                   اصالت بافت و زری‌دوزی یزد
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
 
           {/* 2. Center: Search Bar */}
           <div className="hidden lg:flex items-center flex-1 max-w-md mx-6">
-            <div className="relative w-full">
+            <form role="search" className="relative w-full" onSubmit={(event) => { event.preventDefault(); onSearchSubmit(); }}>
               <input
                 type="text"
+                aria-label="جستجو در محصولات"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="جستجو در نام محصول، طرح شاه‌عباسی، رانر، شاه‌نشین…"
                 className="w-full pl-10 pr-4 py-2.5 text-xs rounded-full border border-line bg-sand focus:bg-white focus:outline-hidden focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all"
               />
-              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted/70" aria-hidden="true">
+              <button type="submit" aria-label="جستجو" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-muted/70">
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <circle cx="11" cy="11" r="7" strokeWidth="1.8" />
                   <path strokeLinecap="round" strokeWidth="1.8" d="m20 20-4-4" />
                 </svg>
-              </span>
-            </div>
+              </button>
+            </form>
           </div>
 
           {/* 3. Left side: Order tracking, Consultation, Cart Button & Mobile Hamburger */}
@@ -171,10 +183,10 @@ export function Header({
         </div>
 
         {/* Desktop Category Navigation & Mega-Menu */}
-        <nav className="hidden lg:flex items-center justify-start gap-7 border-t border-line/60 py-2.5 text-xs font-medium text-ink-muted">
-          <a href="#hero" className="text-brand font-bold flex items-center gap-1">
+        <nav aria-label="ناوبری اصلی" className="hidden lg:flex items-center justify-between gap-3 border-t border-line/60 py-2.5 text-xs font-medium text-ink-muted">
+          <Link href="/" aria-current={pathname === '/' ? 'page' : undefined} className="text-brand font-bold flex items-center gap-1">
             <span>صفحه اصلی</span>
-          </a>
+          </Link>
 
           {menuItems.map((item) => (
             <div
@@ -184,8 +196,8 @@ export function Header({
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <a
-                href={item.href}
-                onClick={() => handleCategoryClick(item.category)}
+                href={`/${item.href}`}
+                onClick={(event) => { event.preventDefault(); handleCategoryClick(item.category); }}
                 className="hover:text-brand flex items-center gap-1 py-1 transition-colors"
               >
                 <span>{item.label}</span>
@@ -201,8 +213,8 @@ export function Header({
                     {item.sub.map((subItem, idx) => (
                       <a
                         key={idx}
-                        href={item.href}
-                        onClick={() => handleCategoryClick(item.category)}
+                        href={`/${item.href}`}
+                        onClick={(event) => { event.preventDefault(); handleCategoryClick(item.category); }}
                         className="block px-3 py-2 rounded-lg text-xs text-ink hover:bg-gold-soft hover:text-brand transition-colors"
                       >
                         {subItem}
@@ -214,70 +226,59 @@ export function Header({
             </div>
           ))}
 
-          <a href="#atelier" className="hover:text-brand transition-colors">
-            شاه‌نشین و سفارش اختصاصی
-          </a>
-          <a href="#atelier" className="hover:text-brand transition-colors">
-            داستان تسنیم
-          </a>
+          {pageLinks.slice(0, 2).map((link) => (
+            <Link key={link.href} href={link.href} aria-current={pathname === link.href ? 'page' : undefined} className={`transition-colors hover:text-brand ${pathname === link.href ? 'font-bold text-brand' : ''}`}>
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
         {/* Mobile Drawer */}
         {mobileMenuOpen && (
           <div id="mobile-navigation" className="lg:hidden border-t border-line bg-paper px-4 py-5 space-y-4 shadow-xl animate-fadeIn">
             {/* Search Input for Mobile */}
-            <div className="relative">
+            <form role="search" className="relative" onSubmit={(event) => { event.preventDefault(); setMobileMenuOpen(false); onSearchSubmit(); }}>
               <input
                 type="text"
+                aria-label="جستجو در محصولات"
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="جستجو در نام محصول، طرح، رنگ…"
                 className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-line bg-sand focus:bg-white focus:outline-hidden focus:border-gold"
               />
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted/70" aria-hidden="true">
+              <button type="submit" aria-label="جستجو" className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted/70">
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <circle cx="11" cy="11" r="7" strokeWidth="1.8" />
                   <path strokeLinecap="round" strokeWidth="1.8" d="m20 20-4-4" />
                 </svg>
-              </span>
-            </div>
+              </button>
+            </form>
 
             <div className="space-y-1 text-xs font-semibold text-ink divide-y divide-line/30">
-              <a
-                href="#hero"
+              <Link
+                href="/"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between py-2.5 text-brand font-bold"
               >
                 <span>صفحه اصلی</span>
                 <span className="text-gold text-[10px]">✦</span>
-              </a>
+              </Link>
               {menuItems.map((item) => (
                 <a
                   key={item.id}
-                  href={item.href}
-                  onClick={() => handleCategoryClick(item.category)}
+                  href={`/${item.href}`}
+                  onClick={(event) => { event.preventDefault(); handleCategoryClick(item.category); }}
                   className="flex items-center justify-between py-2.5 hover:text-brand transition-colors"
                 >
                   <span>{item.label}</span>
                   <span className="text-ink-muted text-[10px]">←</span>
                 </a>
               ))}
-              <a
-                href="#atelier"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between py-2.5 hover:text-brand transition-colors"
-              >
-                <span>سرویس شاه‌نشین و سفارش ابعاد دلخواه</span>
-                <span className="text-ink-muted text-[10px]">←</span>
-              </a>
-              <a
-                href="#atelier"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between py-2.5 hover:text-brand transition-colors"
-              >
-                <span>داستان اصالت تسنیم ترمه</span>
-                <span className="text-ink-muted text-[10px]">←</span>
-              </a>
+              {pageLinks.map((link) => (
+                <Link key={link.href} href={link.href} onClick={() => setMobileMenuOpen(false)} aria-current={pathname === link.href ? 'page' : undefined} className={`flex items-center justify-between py-2.5 transition-colors hover:text-brand ${pathname === link.href ? 'text-brand' : ''}`}>
+                  <span>{link.label}</span><span aria-hidden="true">←</span>
+                </Link>
+              ))}
             </div>
 
             <div className="pt-2 flex flex-col gap-2.5">

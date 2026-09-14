@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { KhatamBorder } from './motifs';
+import Link from 'next/link';
 
 export function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -62,7 +63,7 @@ export function Footer() {
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="ایمیل یا شماره همراه خود را وارد کنید…"
-                    className="flex-1 px-3 py-2 text-xs rounded-xl bg-[#241e1b] border border-[#3d332d] text-white focus:outline-hidden focus:border-gold"
+                    className="min-w-0 flex-1 px-3 py-2 text-xs rounded-xl bg-[#241e1b] border border-[#3d332d] text-white focus:outline-hidden focus:border-gold"
                   />
                   <button
                     type="submit"
@@ -83,29 +84,26 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#products" className="hover:text-gold transition-colors">
+                <Link href="/#products" className="hover:text-gold transition-colors">
                   ست رومیزی ۵ تکه پذیرایی
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#shahneshin" className="hover:text-gold transition-colors">
+                <Link href="/#shahneshin" className="hover:text-gold transition-colors">
                   سرویس‌های شاه‌نشین سنتی
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-gold transition-colors">
-                  سجاده و جانمازهای نفیس
-                </a>
+                <Link href="/about" className="hover:text-gold transition-colors">درباره تسنیم ترمه</Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-gold transition-colors">
-                  هدایای سازمانی و چوبی
-                </a>
+                <Link href="/contact" className="hover:text-gold transition-colors">تماس با ما</Link>
               </li>
               <li>
-                <a href="#products" className="hover:text-gold transition-colors">
-                  خرید بر اساس طرح کهن
-                </a>
+                <Link href="/faq" className="hover:text-gold transition-colors">پرسش‌های متداول</Link>
+              </li>
+              <li>
+                <Link href="/care" className="hover:text-gold transition-colors">راهنمای نگهداری ترمه</Link>
               </li>
             </ul>
           </div>
