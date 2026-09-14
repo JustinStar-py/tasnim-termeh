@@ -4,8 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import {
   BotehMark,
+  AuthenticBotehJegheh,
   ShamsehEightStar,
-  ShamsehTwelveStar,
   OrsiWindowLattice,
   GirihDivider,
 } from './motifs';
@@ -81,11 +81,11 @@ export function CategoryArches({ onSelectCategory }: CategoryArchesProps) {
       <div className="pointer-events-none absolute inset-0 opacity-[0.02] text-brand select-none overflow-hidden" aria-hidden="true">
         <OrsiWindowLattice className="w-full h-full" />
       </div>
-      <div className="pointer-events-none absolute -left-14 top-1/2 -translate-y-1/2 opacity-[0.04] text-gold select-none hidden lg:block" aria-hidden="true">
-        <ShamsehTwelveStar className="h-72 w-72" />
+      <div className="pointer-events-none absolute -left-10 top-1/2 -translate-y-1/2 opacity-[0.08] text-gold select-none hidden lg:block -rotate-12" aria-hidden="true">
+        <AuthenticBotehJegheh idPrefix="arch-boteh-l" className="w-64 h-auto" />
       </div>
-      <div className="pointer-events-none absolute -right-14 top-1/2 -translate-y-1/2 opacity-[0.04] text-gold select-none hidden lg:block" aria-hidden="true">
-        <ShamsehTwelveStar className="h-72 w-72" />
+      <div className="pointer-events-none absolute -right-10 top-1/2 -translate-y-1/2 opacity-[0.08] text-gold select-none hidden lg:block rotate-[165deg] scale-x-[-1]" aria-hidden="true">
+        <AuthenticBotehJegheh idPrefix="arch-boteh-r" className="w-64 h-auto" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

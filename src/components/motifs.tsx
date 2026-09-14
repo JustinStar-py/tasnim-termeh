@@ -98,32 +98,270 @@ export function ShamsehEightStar({ className = 'w-7 h-7 text-gold' }: MotifProps
 }
 
 /**
- * 12-Pointed Radiating Shamseh Star (شمسه دوازده‌پر خورشیدی - Reference Image 2)
+ * ShamsehTwelveStar alias - redirects to BotehMark per user preference to use Boteh Jegheh across all pages
  */
-export function ShamsehTwelveStar({ className = 'w-8 h-8 text-gold' }: MotifProps) {
+export function ShamsehTwelveStar({ className = 'w-8 h-8 text-gold', size }: MotifProps) {
+  return <BotehMark className={className} size={size} />;
+}
+
+/**
+ * Authentic Persian Boteh Jegheh (بته‌جقه اصیل ایرانی با گردن کشیده، خطوط نرم، حاشیه طلایی و گل‌وبوته‌های اسلیمی)
+ * برگرفته از طراحی فاخر و متناسب نساجی کهن یزد
+ */
+export function AuthenticBotehJegheh({
+  className = 'w-48 h-auto',
+  idPrefix = 'termeh-boteh',
+  size,
+  style,
+}: {
+  className?: string;
+  idPrefix?: string;
+  size?: number;
+  style?: React.CSSProperties;
+}) {
+  const botehId = `${idPrefix}-boteh`;
+  const insideId = `${idPrefix}-inside`;
+  const textureId = `${idPrefix}-texture`;
+  const petalId = `${idPrefix}-petal`;
+  const flowerId = `${idPrefix}-flower`;
+  const leafId = `${idPrefix}-leaf`;
+  const tealId = `${idPrefix}-teal`;
+  const goldId = `${idPrefix}-gold`;
+
   return (
-    <svg viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
-      <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-      <polygon
-        points="32,4 39,21 57,14 47,29 60,42 43,45 42,62 29,51 16,60 21,43 4,40 17,27 7,12 25,19"
-        fill="currentColor"
-        opacity="0.15"
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="35 -15 330 525"
+      className={className}
+      style={size ? { width: size, height: 'auto', ...style } : style}
+      role="img"
+      aria-label="نقش بته‌جقه اصیل ایرانی"
+    >
+      <defs>
+        <linearGradient id={tealId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stopColor="#319e98" />
+          <stop offset="0.52" stopColor="#146e78" />
+          <stop offset="1" stopColor="#073f51" />
+        </linearGradient>
+
+        <linearGradient id={goldId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop stopColor="#fff0b5" />
+          <stop offset="0.5" stopColor="#d5a64e" />
+          <stop offset="1" stopColor="#f1d38a" />
+        </linearGradient>
+
+        {/* منحنی‌های متصل با جهت مماس مشترک و گردن کشیده */}
+        <path
+          id={botehId}
+          d="
+            M200 480
+            C90 480 45 370 65 265
+            C85 160 150 75 238 25
+            C282 0 316 10 328 46
+            C340 82 316 117 288 112
+            C274 109.5 261 97 257 88
+            C253 79 246 79 246 86
+            C246 114 279 149 300 198
+            C321 247 333 275 337 315
+            C345 395 305 480 200 480
+            Z
+          "
+        />
+
+        <clipPath id={insideId}>
+          <use href={`#${botehId}`} />
+        </clipPath>
+
+        <pattern id={textureId} width="24" height="24" patternUnits="userSpaceOnUse">
+          <path
+            d="M12 6 Q20 12 12 18 Q4 12 12 6Z"
+            fill="none"
+            stroke="#b4dcc1"
+            strokeOpacity="0.16"
+          />
+          <circle cx="0" cy="0" r="1" fill="#efd18a" opacity="0.3" />
+        </pattern>
+
+        <ellipse id={petalId} cy="-12" rx="5.5" ry="10" />
+
+        <g id={flowerId}>
+          <g fill={`url(#${goldId})`} stroke="#9c622e" strokeWidth="0.7">
+            <use href={`#${petalId}`} />
+            <use href={`#${petalId}`} transform="rotate(60)" />
+            <use href={`#${petalId}`} transform="rotate(120)" />
+            <use href={`#${petalId}`} transform="rotate(180)" />
+            <use href={`#${petalId}`} transform="rotate(240)" />
+            <use href={`#${petalId}`} transform="rotate(300)" />
+          </g>
+          <circle r="7" fill="#963448" stroke="#f5d995" strokeWidth="1" />
+          <circle r="2.5" fill="#ffeab0" />
+        </g>
+
+        <g id={leafId}>
+          <path
+            d="M0 0 Q-20 -12 -9 -32 Q10 -22 0 0Z"
+            fill="#83c6aa"
+            stroke="#e5c27a"
+            strokeWidth="1"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M0 0 Q-7 -15 -9 -27"
+            fill="none"
+            stroke="#377f77"
+            strokeWidth="1"
+            strokeLinecap="round"
+          />
+        </g>
+      </defs>
+
+      <use
+        href={`#${botehId}`}
+        fill={`url(#${tealId})`}
+        stroke={`url(#${goldId})`}
+        strokeWidth="5"
+        strokeLinejoin="round"
       />
-      <polygon
-        points="32,8 38,22 52,16 44,29 55,40 40,43 39,57 28,47 17,55 21,41 7,38 18,27 10,15 25,20"
-        stroke="currentColor"
-        strokeWidth="1.5"
+
+      <g clipPath={`url(#${insideId})`}>
+        <path d="M35 -15H365V510H35Z" fill={`url(#${textureId})`} />
+
+        {/* ساقه اصلی با ادامه‌ای نرم در گردن */}
+        <g
+          fill="none"
+          stroke={`url(#${goldId})`}
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path
+            d="
+              M198 451
+              C159 404 227 365 218 308
+              C209 251 170 244 186 198
+              C202 152 218 133 226 103
+              C234 73 249 43 275 39
+              C301 35 314 62 300 81
+              C296 87 290 90 285 89
+            "
+          />
+
+          <path
+            d="
+              M193 416
+              C142 424 102 394 115 360
+              C126 331 164 337 165 360
+              C166 376 146 384 138 371
+            "
+          />
+
+          <path
+            d="
+              M208 376
+              C259 401 308 365 289 328
+              C276 301 244 311 246 331
+              C247 347 266 350 272 338
+            "
+          />
+
+          <path
+            d="
+              M217 311
+              C177 324 126 307 132 274
+              C137 247 166 251 171 268
+              C175 283 157 292 150 282
+            "
+          />
+
+          <path
+            d="
+              M186 223
+              C225 239 271 228 268 200
+              C265 176 237 176 232 192
+              C229 204 242 211 250 204
+            "
+          />
+
+          <path
+            d="
+              M207 152
+              C177 169 157 158 165 138
+              C171 123 188 121 194 134
+            "
+          />
+
+          <path d="M221 121 C238 134 250 145 260 146" />
+          <path d="M196 444 Q238 445 259 416" />
+          <path d="M119 350 Q95 327 108 310" />
+          <path d="M291 319 Q313 296 296 270" />
+        </g>
+
+        {/* برگ‌ها */}
+        <use href={`#${leafId}`} transform="translate(191 412) rotate(-48)" />
+        <use href={`#${leafId}`} transform="translate(198 391) rotate(65)" />
+        <use href={`#${leafId}`} transform="translate(219 352) rotate(35)" />
+        <use href={`#${leafId}`} transform="translate(216 308) rotate(-48)" />
+        <use href={`#${leafId}`} transform="translate(189 260) rotate(-42)" />
+        <use href={`#${leafId}`} transform="translate(189 211) rotate(40) scale(.85)" />
+        <use href={`#${leafId}`} transform="translate(213 139) rotate(-35) scale(.65)" />
+        <use href={`#${leafId}`} transform="translate(229 92) rotate(-35) scale(.52)" />
+        <use href={`#${leafId}`} transform="translate(249 54) rotate(-25) scale(.42)" />
+        <use href={`#${leafId}`} transform="translate(117 391) rotate(-40) scale(.8)" />
+        <use href={`#${leafId}`} transform="translate(278 374) rotate(75) scale(.85)" />
+        <use href={`#${leafId}`} transform="translate(136 298) rotate(-55) scale(.7)" />
+        <use href={`#${leafId}`} transform="translate(254 225) rotate(70) scale(.75)" />
+        <use href={`#${leafId}`} transform="translate(230 438) rotate(65) scale(.65)" />
+        <use href={`#${leafId}`} transform="translate(171 159) rotate(-45) scale(.55)" />
+
+        {/* گل‌ها */}
+        <use href={`#${flowerId}`} transform="translate(197 443) scale(.8)" />
+        <use href={`#${flowerId}`} transform="translate(145 362) scale(.85)" />
+        <use href={`#${flowerId}`} transform="translate(265 333) scale(.95)" />
+        <use href={`#${flowerId}`} transform="translate(151 272) scale(.75)" />
+        <use href={`#${flowerId}`} transform="translate(246 195) scale(.8)" />
+        <use href={`#${flowerId}`} transform="translate(181 136) scale(.58)" />
+        <use href={`#${flowerId}`} transform="translate(260 146) scale(.4)" />
+        <use href={`#${flowerId}`} transform="translate(260 412) scale(.6)" />
+        <use href={`#${flowerId}`} transform="translate(108 309) scale(.48)" />
+        <use href={`#${flowerId}`} transform="translate(296 270) scale(.58)" />
+        <use href={`#${flowerId}`} transform="translate(280 40) scale(.38)" />
+
+        {/* نقاط زرین */}
+        <g fill="#f3d893">
+          <circle cx="118" cy="225" r="2" />
+          <circle cx="137" cy="205" r="1.5" />
+          <circle cx="289" cy="238" r="2" />
+          <circle cx="179" cy="342" r="2" />
+          <circle cx="238" cy="282" r="1.6" />
+          <circle cx="197" cy="103" r="1.6" />
+          <circle cx="304" cy="383" r="1.7" />
+          <circle cx="161" cy="434" r="1.7" />
+          <circle cx="285" cy="89" r="2" />
+        </g>
+
+        {/* قاب ظریف‌تر برای جلوگیری از ازدحام در پیچ گردن */}
+        <g fill="none" strokeLinejoin="round" strokeLinecap="round">
+          <use href={`#${botehId}`} stroke="#082f3e" strokeWidth="19" />
+          <use href={`#${botehId}`} stroke="#dcb66b" strokeWidth="15" />
+          <use href={`#${botehId}`} stroke="#103f4b" strokeWidth="12" />
+          <use href={`#${botehId}`} stroke="#f4d38b" strokeWidth="8" strokeDasharray=".1 8" />
+          <use href={`#${botehId}`} stroke="#103f4b" strokeWidth="5" />
+        </g>
+      </g>
+
+      <use
+        href={`#${botehId}`}
         fill="none"
+        stroke={`url(#${goldId})`}
+        strokeWidth="2.5"
+        strokeLinejoin="round"
       />
-      <circle cx="32" cy="32" r="10" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="32" cy="32" r="6" fill="currentColor" />
-      <circle cx="32" cy="32" r="2" fill="#fdfbf7" />
     </svg>
   );
 }
 
-export function ShamsehOrnament({ className = 'w-8 h-8 text-gold' }: MotifProps) {
-  return <ShamsehTwelveStar className={className} />;
+export function ShamsehOrnament({ className = 'w-8 h-8 text-gold', size }: MotifProps) {
+  return <BotehMark className={className} size={size} />;
 }
 
 /**
@@ -231,6 +469,7 @@ export function GirihDivider({ className = 'text-gold' }: MotifProps) {
       <div className="flex items-center gap-1.5 text-gold">
         <ShamsehEightStar className="w-4 h-4 text-gold" />
         <ShamsehTwelveStar className="w-6 h-6 text-gold" />
+        <BotehMark className="w-5 h-5 text-gold" />
         <ShamsehEightStar className="w-4 h-4 text-gold" />
       </div>
       <span className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-gold/40 to-gold" />
